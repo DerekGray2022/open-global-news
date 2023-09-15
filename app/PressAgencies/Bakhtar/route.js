@@ -1,8 +1,7 @@
  // // // //      BAKHTAR (Afghanistan)        ////
 const { NextResponse } = require("next/server");
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
-const imgArray = [];
 
 export async function GET () {
     const browser = await puppeteer.launch({
@@ -13,34 +12,25 @@ export async function GET () {
     });
     const page = await browser.newPage();
 
+    //  #posts-container > li.post-item.post-687859.post.type-post.status-publish.format-standard.has-post-thumbnail.category-news.category-social.category-education.tie-standard > a > img
+
+    //  #posts-container > li.post-item.post-687865.post.type-post.status-publish.format-standard.has-post-thumbnail.category-politics.category-news.category-top-en.category-social.tie-standard > a > img
+
     try {
         // Landing Page
-        await page.goto('https://bakhtarnews.af/en/');
+        await page.goto('https://bakhtarnews.af/en/category/news/');
 
-        // Get Headlines - (  data[ {} ]  )
-        let data = await page.$$eval(".tie-standard > .thumb-overlay > .thumb-content", (ele) => ele.map(item => ({
-            headline: item.querySelector('h2').innerText,
-            link: item.querySelector('h2 a').getAttribute('href'),
+        // Get Headlines, Link, Body & Image - (  data[ {} ]  )
+        const data = await page.$$eval("#posts-container > .post-item", (ele) => ele.map(item => ({
+            headline: item.querySelector('.post-details > h2').innerText,
+            link: item.querySelector('.post-details > h2 a').getAttribute('href'),
+            body: item.querySelector('.post-details > p').innerText,
+            image: item.querySelector('a > img').src,
         })));
-        
-        // Get Image - (  imgArray[ ]  )
-        const background = await page.$$eval('.tie-standard', (ele) => ele.map(el => window.getComputedStyle(el).backgroundImage));
-        background.map((image) => {
-            const backgroundImage = image.split(`"`)[1];
-            if (backgroundImage !== undefined) {
-                imgArray.push(backgroundImage);
-            };
-        });
-        
-        // Merge data[ {} ] + imgArray[ ]
-        data.map((title, index) => {
-            title.image = imgArray[index];
-        });
 
 
 
         // // // //     OUTPUT      // // // // // // //
-        console.log({data});
         return NextResponse.json({data} );
     }
     catch (err) {

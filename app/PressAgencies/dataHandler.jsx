@@ -26,8 +26,8 @@ export default function DataHandler() {
         const res = await fetch(endpointString, {
             method: "GET",
             next: {
-                revalidate: 0
-            },
+                revalidate: 0,
+            }
         });
         const data = await res.json();
         const newsData = data.data;
@@ -40,11 +40,20 @@ export default function DataHandler() {
 
     return (
         <div>
-            {/* ////////////////////////////////////////////////// */}
+            <div className="container">
+                <p><b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.</p>
+
+                <p>A free, uncensored global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.</p>
+
+                <p className="lastPara">Click on a news agency logo below to download the latest headlines.</p>
+            </div>
+            
+            {/* ////////////////////////////////////////////// */}
             {/*   Logo Selection Button  */}
-            {/* ////////////////////////////////////////////////// */}
+            {/* ////////////////////////////////////////////// */}
             {selectDiv &&
-                <div className="container">
+                    <div className="container">
+                    
                     {imageList.map((image, id) => {
                         const srcArray = image.default.src.split("/");
                         const wanted = srcArray[4];
@@ -60,34 +69,36 @@ export default function DataHandler() {
                         </button>
                         )
                     })}
-            </div>}
+                </div>
+            }
 
 
-            {/* ////////////////////////////////////////////////// */}
+            {/* ////////////////////////////////////////////// */}
             {/*     Is Loading Spinner    */}
-            {/* ////////////////////////////////////////////////// */}
-			{ isLoading &&
-				<div className="loading">
-					<div className="spinner"></div>
-					<p>Loading...</p>
-                </div>}
+            {/* ////////////////////////////////////////////// */}
+            { isLoading &&
+                <div className="loading">
+                    <div className="spinner"></div>
+                    <p>Loading...</p>
+                </div>
+            }
 
 
-            {/* ////////////////////////////////////////////////// */}
+            {/* ////////////////////////////////////////////// */}
             {/*     BACK Button    */}
-            {/* ////////////////////////////////////////////////// */}
+            {/* ////////////////////////////////////////////// */}
             {!selectDiv && 
-                <div>
+                <div className="button">
                     <button onClick={() => { setSelectDiv(true) }}>
                         BACK
                     </button> 
                 </div> 
             }
 
-            
-            {/* ////////////////////////////////////////////////// */}
+        
+            {/* ////////////////////////////////////////////// */}
             {/*     News Item Display Cards    */}
-            {/* ////////////////////////////////////////////////// */}
+            {/* ////////////////////////////////////////////// */}
             {!selectDiv && 
                 <div>
                     {!isLoading && news.map((item, id) => (

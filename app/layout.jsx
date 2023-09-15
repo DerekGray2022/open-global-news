@@ -4,7 +4,7 @@ import { Rajdhani } from 'next/font/google';
 //  Components
 import Header from './components/header';
 
-const orbitron = Rajdhani({
+const rajdhani = Rajdhani({
   subsets: ['latin'],
   weight: ['400', '700']
 });
@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={orbitron.className}>
+      <body className={rajdhani.className}>
         {<Header />}
         {children}
       </body>
