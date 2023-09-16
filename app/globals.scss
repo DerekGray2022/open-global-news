@@ -66,6 +66,7 @@ body
   padding: 1rem;
   background-color: rgba(var(--header-back));
   box-shadow: 5px 5px 10px rgba(var(--black-tint));
+  z-index: 1;
 
   .logo
   {
@@ -131,15 +132,19 @@ button
 
 .button
 {
+  position: sticky;
+  top: 110px;
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
+  z-index: 99;
 
   button
   {
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
     font-weight: 700;
+    background-color: rgb(var(--background-rgb));
   }
 }
 
@@ -219,7 +224,7 @@ button
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 20vh;
   color: rgb(var(--foreground-rgb));
   display: flex;
   align-items: center;
@@ -251,7 +256,15 @@ button
 
 
 //    MEDIA QUERIES
-@media only screen and (min-width : 800px) 
+@media only screen and (min-width : 700px) 
+{
+  .button
+  {
+    top: 20px;
+  }
+}
+
+@media only screen and (min-width : 1200px) 
 {
   .header
   {

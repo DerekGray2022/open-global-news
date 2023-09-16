@@ -4,7 +4,6 @@ import React, {useState} from "react";
 import Link from "next/link";
 
 // 		Components
-import apImage from '../logos/AssocPress.jpg';
 // import apText from '../Logos/USA/AssocPress/AssocPress.json';
 
 const images = require.context('../logos', true);
@@ -65,21 +64,10 @@ export default function DataHandler() {
                             e.preventDefault();
                             handleClick(logoEndpoint);
                             }}>
-                            <img src={image.default.src} alt="Story Image" />
+                            <img src={image.default.src} alt={logoEndpoint} />
                         </button>
                         )
                     })}
-                </div>
-            }
-
-
-            {/* ////////////////////////////////////////////// */}
-            {/*     Is Loading Spinner    */}
-            {/* ////////////////////////////////////////////// */}
-            { isLoading &&
-                <div className="loading">
-                    <div className="spinner"></div>
-                    <p>Loading...</p>
                 </div>
             }
 
@@ -93,6 +81,17 @@ export default function DataHandler() {
                         BACK
                     </button> 
                 </div> 
+            }
+
+
+            {/* ////////////////////////////////////////////// */}
+            {/*     Is Loading Spinner    */}
+            {/* ////////////////////////////////////////////// */}
+            { isLoading &&
+                <div className="loading">
+                    <div className="spinner"></div>
+                    <p>Loading...</p>
+                </div>
             }
 
         
