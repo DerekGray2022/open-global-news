@@ -25,17 +25,17 @@ body
   background: rgb(var(--background-rgb));
 }
 
-.container
+.introContainer
 {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80vw;
-  margin: 3rem auto;
+  margin: 3rem auto 1rem;
 
   p
   {
-    margin: 0.5rem auto;
+    margin: 0.25rem auto;
     text-align: justify;
     width: 100%;
     max-width: 40rem;
@@ -43,14 +43,24 @@ body
 
   .lastPara
   {
-    margin: 2rem auto 4rem;
+    margin: 1rem auto;
+    text-align: center;
     color: rgb(200, 200, 200);
     font-weight: 700;
   }
+}
+
+.container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
 
   button
   {
-    margin: 1rem auto;
+    margin: 1rem;
   }
 }
 
@@ -239,7 +249,7 @@ button
     border-top: 4px solid rgb(var(--foreground-rgb));
     border-radius: 50%;
     margin: auto 1rem;
-    animation: spin 2s linear infinite;
+    animation: spin 1.5s linear infinite;
   }
 }
 

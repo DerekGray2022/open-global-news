@@ -83,7 +83,6 @@ export async function  GET () {
                 // Get Image
                 const secondaryImageFull = await page.evaluate(el => window.getComputedStyle(el).backgroundImage, await item.$('a > div.news-preview__photo-wrapper > div'));
                 const secondaryImage = secondaryImageFull.match(/url\("(.*)"/)[1];
-                console.log(secondaryImage);
     
                 // Collate secondaryData & Push to "data" Array
                 const secondaryData = {

@@ -24,6 +24,7 @@ export default function DataHandler() {
         const endpointString = `/PressAgencies/${endpoint}`;
         const res = await fetch(endpointString, {
             method: "GET",
+            cache: 'no-store',
             next: {
                 revalidate: 0,
             }
@@ -32,14 +33,13 @@ export default function DataHandler() {
         const newsData = data.data;
 
         setNews(newsData);
-
         setIsLoading(false);
     };
 
 
     return (
         <div>
-            <div className="container">
+            <div className="introContainer">
                 <p><b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.</p>
 
                 <p>A free, uncensored global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.</p>
