@@ -149,8 +149,10 @@ export async function GET () {
         );
     }
     finally {
-        await browser.close();
-    }
+        if (browser) {
+            await browser.close();
+        };
+    };
 };
 
 
