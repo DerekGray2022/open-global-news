@@ -3,9 +3,6 @@
 import React, {useState} from "react";
 import Link from "next/link";
 
-// 		Components
-// import apText from '../Logos/USA/AssocPress/AssocPress.json';
-
 const images = require.context('../logos', true);
 const imageList = images.keys().map(image => images(image));
 
@@ -16,7 +13,7 @@ export default function DataHandler() {
     const [selectDiv, setSelectDiv] = useState(true);
 
     //  Functions
-    const handleClick = async (endpoint) => {
+    const handleClick = async (endpoint, e) => {
         setNews([]);
         setSelectDiv(false);
         setIsLoading(true);
@@ -24,10 +21,10 @@ export default function DataHandler() {
         const endpointString = `/PressAgencies/${endpoint}`;
         const res = await fetch(endpointString, {
             method: "GET",
-            cache: 'no-store',
             next: {
                 revalidate: 0,
-            }
+            },
+            cache: 'no-store',
         });
         const data = await res.json();
         const newsData = data.data;

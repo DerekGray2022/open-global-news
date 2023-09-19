@@ -61,7 +61,7 @@ export async function  GET () {
         }
         catch (err) {
             return NextResponse.json(
-                { error: `No response from Fars Press. : ${err.message}` },
+                { err: `No response from Fars Press. : ${err.message}` },
                 { status: 400 }
 		    );
         };
@@ -72,7 +72,7 @@ export async function  GET () {
     }
     catch (err) {
         return NextResponse.json(
-            { error: `Fars Press failed to load : ${err.message}` },
+            { err: `Fars Press failed to load : ${err.message}` },
             { status: 400 }
         );
     }

@@ -51,7 +51,7 @@ export async function  GET () {
         }
         catch (err) {
             return NextResponse.json(
-                { error: `No response from Associated Press. : ${err.message}` },
+                { err: `No response from Associated Press. : ${err.message}` },
                 { status: 400 }
 		    );
         };
@@ -96,7 +96,7 @@ export async function  GET () {
     }
     catch (err) {
         return NextResponse.json(
-            { error: `Associated Press failed to load : ${err.message}` },
+            { err: `Associated Press failed to load : ${err.message}` },
             { status: 400 }
         );
     }
