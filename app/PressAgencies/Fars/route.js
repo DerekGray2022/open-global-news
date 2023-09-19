@@ -60,10 +60,11 @@ export async function  GET () {
             };
         }
         catch (err) {
-            return NextResponse.json(
-                { err: `No response from Fars Press. : ${err.message}` },
-                { status: 400 }
-		    );
+            const errData = {
+                headline: "Fars Press failed to load.",
+            };
+            data.push(errData);
+            return NextResponse.json({data});
         };
 
         //#endregion
@@ -71,10 +72,11 @@ export async function  GET () {
         return NextResponse.json({ data });
     }
     catch (err) {
-        return NextResponse.json(
-            { err: `Fars Press failed to load : ${err.message}` },
-            { status: 400 }
-        );
+        const errData = {
+            headline: "Fars Press failed to load.",
+        };
+        data.push(errData);
+        return NextResponse.json({data});
     }
     finally {
         if (browser) {

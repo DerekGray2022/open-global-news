@@ -79,7 +79,6 @@ export async function GET () {
             headline: secondaryHeadline,
             body: secondaryBody,
             link: secondaryLink,
-            image: null,
             related,
         };
         related = [];

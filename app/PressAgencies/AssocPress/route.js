@@ -84,10 +84,8 @@ export async function  GET () {
             // Collate otherData & Push to "data" Array
             const otherData = {
                 headline: otherHead,
-                body: null,
                 image: otherImage,
                 link: otherLink,
-                related: null,
             };
             data.push(otherData);
         };

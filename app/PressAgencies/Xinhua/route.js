@@ -31,7 +31,7 @@ export async function  GET () {
                 //  Get Headline
                 const carouselImage = await item.evaluate(ele => ele.querySelector('div.img > a > img').src);
                 // Get Link
-                const carouselLink = await item.evaluate(ele => ele.querySelector('div.img > a ').href);
+                const carouselLink = await item.evaluate(ele => ele.querySelector('div.tit > a').href);
 
                 //  Create carousel Object
                 const carouselObj = {
@@ -60,14 +60,12 @@ export async function  GET () {
         }
         catch (err) {
             return NextResponse.json(
-                { error: `No response from Associated Press. : ${err.message}` },
+                { error: `No response from Xinhua. : ${err.message}` },
                 { status: 400 }
 		    );
         };
 
         //#endregion
-
-
 
 
 
@@ -80,8 +78,6 @@ export async function  GET () {
         const topitemHead = await itemsContainer.evaluate((el) => el.querySelector('#headline > h1 > a').innerText);
         // Get Body
         const topitemBody = await itemsContainer.evaluate((el) => el.querySelector('#headline > p').innerText);
-        // // Get Image
-        // const topitemImage = await itemsContainer.evaluate((el) => el.querySelector(' picture > img').src);
         // Get Link
         const topitemLink = await itemsContainer.evaluate((el) => el.querySelector('#headline > h1 > a').href);
 
@@ -112,14 +108,12 @@ export async function  GET () {
         }
         catch (err) {
             return NextResponse.json(
-                { error: `No response from Associated Press. : ${err.message}` },
+                { error: `No response from Xinhua. : ${err.message}` },
                 { status: 400 }
 		    );
         };
 
         //#endregion
-
-
 
 
 
@@ -147,7 +141,6 @@ export async function  GET () {
         };
 
         //#endregion
-
 
 
 
@@ -196,7 +189,7 @@ export async function  GET () {
     }
     catch (err) {
         return NextResponse.json(
-            { error: `Associated Press failed to load : ${err.message}` },
+            { error: `Xinhua failed to load : ${err.message}` },
             { status: 400 }
         );
     }

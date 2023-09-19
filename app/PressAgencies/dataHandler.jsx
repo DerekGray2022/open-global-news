@@ -26,6 +26,7 @@ export default function DataHandler() {
             },
             cache: 'no-store',
         });
+        //      TODO    res.status = 500 bug fix
         const data = await res.json();
         const newsData = data.data;
 
