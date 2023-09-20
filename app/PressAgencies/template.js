@@ -1,9 +1,8 @@
-// // // //      ASSOCIATED PRESS (USA)        ////
+// // // //      PRESS AGENCY (Country)        ////
 import { NextResponse } from"next/server";
 import puppeteer from 'puppeteer';
 
 let data = [];
-let related = [];
 
 export async function  GET () {
     const browser = await puppeteer.launch({
@@ -16,87 +15,65 @@ export async function  GET () {
 
     try {
         // Landing Page
-        await page.goto('https://www.apnews.com/');
+        await page.goto('WebPage');
 
 
-        // #region           TOP STORY DIVISION
-        await page.waitForSelector('div.PageListStandardE', {visible: true});
-        const topstory = await page.$('div.PageListStandardE');
+        // #region           SINGLE ITEM DIVISION
+        await page.waitForSelector('Container', {visible: true});
+        const singleItem = await page.$('Container');
 
         // Get Headline
-        const topstoryHead = await topstory.evaluate((el) => el.querySelector('.PagePromo-title > a > span').innerText);
+        const singleItemHead = await singleItem.evaluate((el) => el.querySelector('RequiredElement').innerText);
         // Get Body
-        const topstoryBody = await topstory.evaluate((el) => el.querySelector('.PagePromo-description').innerText);
+        const singleItemBody = await singleItem.evaluate((el) => el.querySelector('RequiredElement').innerText);
         // Get Image
-        const topstoryImage = await topstory.evaluate((el) => el.querySelector(' picture > img').src);
+        const singleItemImage = await singleItem.evaluate((el) => el.querySelector('RequiredElement').src);
         // Get Link
-        const topstoryLink = await topstory.evaluate((el) => el.querySelector('.PagePromo-title > a').href);
-
-        // Get Related Stories
-        const topstoryRelated = await topstory.$$('.PageListStandardE-items-secondary > .PagePromo > .PagePromo-content > .PagePromo-title > .Link');
-        try {
-            for (let story of topstoryRelated) {
-                //  Get Headline
-                const otherHead = await story.evaluate(ele => ele.querySelector('.PagePromoContentIcons-text').innerText);
-                // Get Link
-                const otherLink = await story.evaluate(ele => ele.href);
-
-                // Collate Related Stories & Push to "related" Array
-                const relate = {
-                    headline: otherHead,
-                    link: otherLink,
-                };
-                related.push(relate);
-            };
-        }
-        catch (err) {
-            return NextResponse.json(
-                { error: `No response from Associated Press. : ${err.message}` },
-                { status: 400 }
-		    );
-        };
+        const singleItemLink = await singleItem.evaluate((el) => el.querySelector('Required Element').href);
 
         // Push Collated Data &  to "data" Array
         data.push({
-            headline: topstoryHead,
-            body: topstoryBody,
-            image: topstoryImage,
-            link: topstoryLink,
-            related
+            headline: singleItemHead,
+            body: singleItemBody,
+            image: singleItemImage,
+            link: singleItemLink,
         });
+
         //#endregion
 
 
 
-        //#region           OTHER STORIES DIVISION
-        await page.waitForSelector('body > div.Page-content > main > div:nth-child(1) > div > div:nth-child(1) > bsp-list-loadmore > div.PageList-items > .PageList-items-item', {visible: true});
-        const otherStories = await page.$$('body > div.Page-content > main > div:nth-child(1) > div > div:nth-child(1) > bsp-list-loadmore > div.PageList-items > .PageList-items-item');
+        //#region           MULTIPLE ITEMS DIVISION
+        await page.waitForSelector('Container', {visible: true});
+        const multiItems = await page.$$('Container');
 
-        
-        for (let story of otherStories) {
+        for (let item of multiItems) {
             // Get Headline
-            const otherHead = await story.evaluate(el => el.querySelector('div.PagePromo-content > div > a > span').innerText);
+            const multiHead = await story.evaluate(el => el.querySelector('RequiredElement').innerText);
+            // Get Body
+            const multiBody = await story.evaluate(el => el.querySelector('RequiredElement').src);
             // Get Image
-            const otherImage = await story.evaluate(el => el.querySelector('.PagePromo-media > a > picture > img').src);
+            const multiImage = await story.evaluate(el => el.querySelector('RequiredElement').src);
             // Get Image
-            const otherLink = await story.evaluate(el => el.querySelector('.PagePromo-media > a').href);
+            const multiLink = await story.evaluate(el => el.querySelector('RequiredElement').href);
 
-            // Collate otherData & Push to "data" Array
-            const otherData = {
-                headline: otherHead,
-                body: null,
-                image: otherImage,
-                link: otherLink,
-                related: null,
+            // Collate multiData & Push to "data" Array
+            const multiData = {
+                headline: multiHead,
+                body: multiBody,
+                image: multiImage,
+                link: multiLink,
             };
-            data.push(otherData);
+            data.push(multiData);
         };
+        
         //#endregion
+
         return NextResponse.json({ data });
     }
     catch (err) {
         return NextResponse.json(
-            { error: `Associated Press failed to load : ${err.message}` },
+            { error: `Press Agency failed to load : ${err.message}` },
             { status: 400 }
         );
     }

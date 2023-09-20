@@ -1,9 +1,5 @@
 [
 	{
-		body: 'The Russian News Agency TASS, is a Russian state-owned news agency founded in 1904. It is the largest Russian news agency and one of the largest news agencies worldwide.
-
-		TASS is registered as a Federal State Unitary Enterprise, owned by the Government of Russia. Headquartered in Moscow, it has 70 offices in Russia and in the Commonwealth of Independent States (CIS), "along with 56 global branches in 53 countries".
-
-		In Soviet times, it was named the Telegraph Agency of the Soviet Union (Telegrafnoye agentstvo Sovetskogo Soyuza) and was the central agency for news collection and distribution for all Soviet newspapers, radio and television stations. After the dissolution of the Soviet Union, it was renamed Information Telegraph Agency of Russia (ITAR-TASS), informatsionnoye telegrafnoye agentstvo Rossii (ITAR-TASS)) in 1992, but regained the simpler TASS name in 2014. Currently, on a daily basis TASS is "publishing nearly 3,000 news items in six languages and about 700 photographs and videos from correspondents in Russia and across the world".'
+		"body": "The Russian News Agency TASS, is a Russian state-owned news agency founded in 1904. It is the largest Russian news agency and one of the largest news agencies worldwide. TASS is registered as a Federal State Unitary Enterprise, owned by the Government of Russia. Headquartered in Moscow, it has 70 offices in Russia and in the Commonwealth of Independent States (CIS), along with 56 global branches in 53 countries'. In Soviet times, it was named the Telegraph Agency of the Soviet Union (Telegrafnoye agentstvo Sovetskogo Soyuza) and was the central agency for news collection and distribution for all Soviet newspapers, radio and television stations. After the dissolution of the Soviet Union, it was renamed Information Telegraph Agency of Russia (ITAR-TASS), informatsionnoye telegrafnoye agentstvo Rossii (ITAR-TASS)) in 1992, but regained the simpler TASS name in 2014. Currently, on a daily basis TASS is 'publishing nearly 3,000 news items in six languages and about 700 photographs and videos from correspondents in Russia and across the world'."
 	}
 ]

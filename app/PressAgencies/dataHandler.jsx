@@ -3,14 +3,18 @@
 import React, {useState} from "react";
 import Link from "next/link";
 
+//      COMPONENTS
 const images = require.context('../logos', true);
 const imageList = images.keys().map(image => images(image));
+import Countries from '../json/countries.json';
 
 export default function DataHandler() {
     //  Use States
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectDiv, setSelectDiv] = useState(true);
+    const [altText, setAltText] = useState("");
+    const [presentImg, setPresentImg] = useState(null);
 
     //  Functions
     const handleClick = async (endpoint, e) => {
@@ -37,6 +41,10 @@ export default function DataHandler() {
 
     return (
         <div>
+            
+            {/* /////////////////////////////////////////// */}
+            {/*         Opening Text            */}
+            {/* /////////////////////////////////////////// */}
             <div className="introContainer">
                 <p><b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.</p>
 
@@ -45,9 +53,9 @@ export default function DataHandler() {
                 <p className="lastPara">Click on a news agency logo below to download the latest headlines.</p>
             </div>
             
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {/*   Logo Selection Button  */}
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {selectDiv &&
                     <div className="container">
                     
@@ -58,23 +66,37 @@ export default function DataHandler() {
                         const logoEndpoint = wantedArray[0];
                         
                         return (
-                            <button key={id} className="px-2 py-1 rounded-md" onClick={(e) => {
-                            e.preventDefault();
-                            handleClick(logoEndpoint);
-                            }}>
-                            <img src={image.default.src} alt={logoEndpoint} />
-                        </button>
+                            <button
+                                 key={id}
+                                className="px-2 py-1 rounded-md"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setPresentImg((image.default.src));
+                                    handleClick(logoEndpoint);
+                                }}
+                            >
+                            <div className="group relative flex justify-center">
+                                <img
+                                    onMouseOver={(e) => {
+                                        setAltText(e.target.alt);
+                                    }}
+                                    src={image.default.src}
+                                    alt={logoEndpoint}
+                                />
+                                <span className="absolute left-10 scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100">{Countries[altText]}</span>
+                            </div>
+                            </button>
                         )
                     })}
                 </div>
             }
 
 
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {/*     BACK Button    */}
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {!selectDiv && 
-                <div className="button">
+                <div className="backButton">
                     <button onClick={() => { setSelectDiv(true) }}>
                         BACK
                     </button> 
@@ -82,9 +104,9 @@ export default function DataHandler() {
             }
 
 
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {/*     Is Loading Spinner    */}
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             { isLoading &&
                 <div className="loading">
                     <div className="spinner"></div>
@@ -93,32 +115,39 @@ export default function DataHandler() {
             }
 
         
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {/*     News Item Display Cards    */}
-            {/* ////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////// */}
             {!selectDiv && 
                 <div>
-                    {!isLoading && news.map((item, id) => (
-                        <div key={id} className="card itemCard">
-                            <Link href={item.link} target="_blank" rel="noreferrer">
-                                {item.image && <img src={item.image} alt="Story Image" />}
-                                <h3>{item.headline}</h3>
-                                {item.body && <p>{item.body}</p>}
-                            </Link>
-                            {item.related && 
-                                <div>
-                                    <h4>Related</h4>
-                                    <ul>
-                                        {item.related.map(( item, id) => (
-                                            <li key={id}>
-                                                <Link href={item.link}>{ item.headline}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            }
+                    {!isLoading &&
+                        <div className="relative flex justify-center">
+                            <div id="button">
+                                <img src={presentImg} alt={"pic"} />
+                            </div>
                         </div>
-                    ))}
+                    }
+                    {!isLoading && news.map((item, id) => (
+                                <div key={id} className="card itemCard">
+                                    <Link href={item.link} target="_blank" rel="noreferrer">
+                                        {item.image && <img src={item.image} alt="Story Image" />}
+                                        <h3>{item.headline}</h3>
+                                        {item.body && <p>{item.body}</p>}
+                                    </Link>
+                                    {item.related && 
+                                        <div>
+                                            <h4>Related</h4>
+                                            <ul>
+                                                {item.related.map(( item, id) => (
+                                                    <li key={id}>
+                                                        <Link href={item.link}>{ item.headline}</Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    }
+                                </div>
+                            ))}
                 </div>
             }	
         </div>

@@ -112,7 +112,7 @@ body
 }
 
 
-/*    BUTTON     */
+/*    LOGO BUTTONS     */
 button
 {
   display: flex;
@@ -140,7 +140,8 @@ button
   }
 }
 
-.button
+/*    BACK BUTTON   */
+.backButton
 {
   position: sticky;
   top: 110px;
@@ -155,6 +156,28 @@ button
     font-size: 1.5rem;
     font-weight: 700;
     background-color: rgb(var(--background-rgb));
+  }
+}
+
+#button
+{
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  margin-bottom: 1rem;
+
+  button
+  {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: rgb(var(--background-rgb));
+  }
+
+  img
+  {
+    width: 150px;
+    height: 100%;
   }
 }
 
