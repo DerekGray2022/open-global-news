@@ -10,6 +10,7 @@
   --header-back: 0, 27, 27;
   --tint: 0, 0, 0, 0.1;
   --black-tint: 0, 0, 0, 0.5;
+  --yellow: 167, 167, 0;
 }
 
 *
@@ -144,7 +145,7 @@ button
 .backButton
 {
   position: sticky;
-  top: 110px;
+  top: 6.1rem;
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
@@ -159,26 +160,54 @@ button
   }
 }
 
-#button
+/*    SELECTED LOGO   */
+.logoButtonWrap
 {
   display: flex;
-  justify-content: center;
-  max-width: 300px;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  align-items : center;
 
-  button
+  .logoButton
   {
-    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    max-width: 300px;
+    margin-bottom: 1rem;
+
+    button
+    {
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: rgb(var(--background-rgb));
+      z-index: 1;
+    }
+
+    img
+    {
+      width: 150px;
+      height: 100%;
+    }
+  }
+
+  h2
+  {
+    margin-top: 1rem;
+    color: rgb(var(--white));
     font-size: 1.5rem;
     font-weight: 700;
-    background-color: rgb(var(--background-rgb));
   }
 
-  img
+  h3
   {
-    width: 150px;
-    height: 100%;
+    color: rgb(var(--yellow));
   }
+}
+
+.toolTip
+{
+  position: absolute;
+  left: 7.5rem;
 }
 
 .hidden
@@ -231,7 +260,7 @@ button
     
   h4
   {
-    color: rgb(167, 167, 0);
+    color: rgb(var(--yellow));
     margin-top: 2rem;
     font-weight: 700;
   }
@@ -291,9 +320,9 @@ button
 //    MEDIA QUERIES
 @media only screen and (min-width : 700px) 
 {
-  .button
+  .backButton
   {
-    top: 20px;
+    top: 1rem;
   }
 }
 

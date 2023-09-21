@@ -60,11 +60,13 @@ export async function  GET () {
             };
         }
         catch (err) {
-            const errData = {
-                headline: "Fars Press failed to load.",
-            };
-            data.push(errData);
-            return NextResponse.json({data});
+            data.push({
+            headline: "No more items currently unavailable."
+            });
+            return NextResponse.json(
+                {data},
+                { status: 200 }
+            );
         };
 
         //#endregion
@@ -72,11 +74,13 @@ export async function  GET () {
         return NextResponse.json({ data });
     }
     catch (err) {
-        const errData = {
-            headline: "Fars Press failed to load.",
-        };
-        data.push(errData);
-        return NextResponse.json({data});
+        data.push({
+            headline: "No more items currently unavailable."
+        });
+        return NextResponse.json(
+            {data},
+            { status: 200 }
+        );
     }
     finally {
         if (browser) {

@@ -67,10 +67,13 @@ export async function  GET () {
             };
         }
         catch (err) {
+            data.push({
+            headline: "No more items currently unavailable."
+            });
             return NextResponse.json(
-                { err: `No response from Jerusalem Post. : ${err.message}` },
-                { status: 400 }
-		    );
+                {data},
+                { status: 200 }
+            );
         };
 
         // #endregion
@@ -134,19 +137,25 @@ export async function  GET () {
             };
         }
         catch (err) {
+            data.push({
+            headline: "No more items currently unavailable."
+            });
             return NextResponse.json(
-                { err: `No response from Jerusalem Post. : ${err.message}` },
-                { status: 400 }
-		    );
+                {data},
+                { status: 200 }
+            );
         };
 
         // #endregion
         return NextResponse.json({ data });
     }
     catch (err) {
+        data.push({
+            headline: "No more items currently unavailable."
+        });
         return NextResponse.json(
-            { err: `Jerusalem Post failed to load : ${err.message}` },
-            { status: 400 }
+            {data},
+            { status: 200 }
         );
     }
     finally {

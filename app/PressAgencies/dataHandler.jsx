@@ -2,11 +2,18 @@
 
 import React, {useState} from "react";
 import Link from "next/link";
+import { Orbitron } from 'next/font/google';
+
+const orbitron = Orbitron({
+    subsets: ['latin'],
+    weight: ['400', '700', '900']
+});
 
 //      COMPONENTS
 const images = require.context('../logos', true);
 const imageList = images.keys().map(image => images(image));
 import Countries from '../json/countries.json';
+import Titles from '../json/titles.json';
 
 export default function DataHandler() {
     //  Use States
@@ -15,6 +22,7 @@ export default function DataHandler() {
     const [selectDiv, setSelectDiv] = useState(true);
     const [altText, setAltText] = useState("");
     const [presentImg, setPresentImg] = useState(null);
+    const [suppObj, setSuppObj] = useState({});
 
     //  Functions
     const handleClick = async (endpoint, e) => {
@@ -57,37 +65,39 @@ export default function DataHandler() {
             {/*   Logo Selection Button  */}
             {/* /////////////////////////////////////////// */}
             {selectDiv &&
-                    <div className="container">
+                <div className="container">
+                
+                {/*     List of Agency Logos    */}
+                {imageList.map((image, id) => {
+                    const srcArray = image.default.src.split("/");
+                    const wanted = srcArray[4];
+                    const wantedArray = wanted.split(".");
+                    const logoEndpoint = wantedArray[0];
                     
-                    {imageList.map((image, id) => {
-                        const srcArray = image.default.src.split("/");
-                        const wanted = srcArray[4];
-                        const wantedArray = wanted.split(".");
-                        const logoEndpoint = wantedArray[0];
-                        
-                        return (
-                            <button
-                                 key={id}
-                                className="px-2 py-1 rounded-md"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setPresentImg((image.default.src));
-                                    handleClick(logoEndpoint);
+                    return (
+                        <button
+                                key={id}
+                            className="px-2 py-1 rounded-md"
+                            onClick={() => {
+                                setPresentImg(image.default.src);
+                                handleClick(logoEndpoint);
+                            }}
+                        >
+                        <div className="group relative flex justify-center">
+                            <img
+                                onMouseEnter = {(e) => {
+                                    setAltText(e.target.alt);
                                 }}
-                            >
-                            <div className="group relative flex justify-center">
-                                <img
-                                    onMouseOver={(e) => {
-                                        setAltText(e.target.alt);
-                                    }}
-                                    src={image.default.src}
-                                    alt={logoEndpoint}
+                                src={image.default.src}
+                                alt={logoEndpoint}
                                 />
-                                <span className="absolute left-10 scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100">{Countries[altText]}</span>
-                            </div>
-                            </button>
-                        )
-                    })}
+                                <span className="scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100 toolTip">
+                                    {Countries[altText]}
+                                </span>
+                        </div>
+                        </button>
+                    )
+                })}
                 </div>
             }
 
@@ -120,34 +130,68 @@ export default function DataHandler() {
             {/* /////////////////////////////////////////// */}
             {!selectDiv && 
                 <div>
+                    {/*     Selected Agency's Logo    */}
+                    {console.log(suppObj)}
                     {!isLoading &&
-                        <div className="relative flex justify-center">
-                            <div id="button">
-                                <img src={presentImg} alt={"pic"} />
+                        <div>
+                            <div className="logoButtonWrap">
+                                <div className="logoButton">
+                                    <img src={presentImg} alt={"pic"} />
+                                </div>
+                                <h2 className={orbitron.className}>
+                                    {Titles[altText][0]}
+                                </h2>
+                                <h3 className="text-3xl font-medium">
+                                    {Titles[altText][1]}
+                                </h3>
                             </div>
                         </div>
                     }
+
+                    {/*    Card     */}
                     {!isLoading && news.map((item, id) => (
-                                <div key={id} className="card itemCard">
-                                    <Link href={item.link} target="_blank" rel="noreferrer">
-                                        {item.image && <img src={item.image} alt="Story Image" />}
-                                        <h3>{item.headline}</h3>
-                                        {item.body && <p>{item.body}</p>}
-                                    </Link>
-                                    {item.related && 
-                                        <div>
-                                            <h4>Related</h4>
-                                            <ul>
-                                                {item.related.map(( item, id) => (
-                                                    <li key={id}>
-                                                        <Link href={item.link}>{ item.headline}</Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    }
+                        <div key={id} className="card itemCard">
+                            {/*     If LINK exists    */}
+                            {item.link &&
+                                <Link href={item.link} target="_blank" rel="noreferrer">
+                                {/*   Image  */}
+                                {item.image && <img src={item.image} alt="Story Image" />}
+                                {/*   Headline  */}
+                                <h3>{item.headline}</h3>
+                                {/*   Body  */}
+                                {item.body && <p>{item.body}</p>}
+                                </Link>
+                            }
+                            {/*    If LINK doesn't exist   */}
+                            {!item.link &&
+                                <div>
+                                    {/*   Image  */}
+                                    {item.image && <img src={item.image} alt="Story Image" />}
+                                    {/*   Headline  */}
+                                    <h3>{item.headline}</h3>
+                                    {/*   Body  */}
+                                    {item.body && <p>{item.body}</p>}
                                 </div>
-                            ))}
+                            }
+                            {/*     Related Items    */}
+                            {item.related && 
+                                <div>
+                                    <h4>Related</h4>
+                                    <ul>
+                                        {item.related.map(( item, id) => (
+                                            <li key={id}>
+                                                {/*     Link    */}
+                                                <Link href={item.link}>
+                                                    {/*     Headline    */}
+                                                    {item.headline}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    ))}
                 </div>
             }	
         </div>

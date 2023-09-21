@@ -1,6 +1,6 @@
 // // // //      ASSOCIATED PRESS (USA)        ////
 const { NextResponse } = require("next/server");
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 let data = [];
 let related = [];
@@ -28,7 +28,7 @@ export async function  GET () {
         // Get Body
         const topstoryBody = await topstory.evaluate((el) => el.querySelector('.PagePromo-description').innerText);
         // Get Image
-        const topstoryImage = await topstory.evaluate((el) => el.querySelector(' picture > img').src);
+        const topstoryImage = await topstory.evaluate((el) => el.querySelector('picture > img').src);
         // Get Link
         const topstoryLink = await topstory.evaluate((el) => el.querySelector('.PagePromo-title > a').href);
 
@@ -50,20 +50,25 @@ export async function  GET () {
             };
         }
         catch (err) {
+            data.push({
+            headline: "No more items currently unavailable."
+            });
             return NextResponse.json(
-                { err: `No response from Associated Press. : ${err.message}` },
-                { status: 400 }
-		    );
+                {data},
+                { status: 200 }
+            );
         };
 
         // Push Collated Data &  to "data" Array
-        data.push({
+        const topstoryObj = {
             headline: topstoryHead,
             body: topstoryBody,
             image: topstoryImage,
             link: topstoryLink,
             related
-        });
+        };
+        data.push(topstoryObj);
+
         //#endregion
 
 
@@ -78,24 +83,78 @@ export async function  GET () {
             const otherHead = await story.evaluate(el => el.querySelector('div.PagePromo-content > div > a > span').innerText);
             // Get Image
             const otherImage = await story.evaluate(el => el.querySelector('.PagePromo-media > a > picture > img').src);
-            // Get Image
+            // Get Link
             const otherLink = await story.evaluate(el => el.querySelector('.PagePromo-media > a').href);
 
             // Collate otherData & Push to "data" Array
-            const otherData = {
+            const otherObj = {
                 headline: otherHead,
                 image: otherImage,
                 link: otherLink,
             };
-            data.push(otherData);
+            data.push(otherObj);
         };
+
         //#endregion
+
+
+
+        // #region           MORE NEWS TOP ITEM DIVISION
+        await page.waitForSelector('html > body > div.Page-content > main > div > div > div > div > div > div.PageList-items-first', {visible: true});
+        const moreNewsTop = await page.$('html > body > div.Page-content > main > div > div > div > div > div > div.PageList-items-first');
+
+        // Get Headline
+        const moreNewsTopHead = await moreNewsTop.evaluate((el) => el.querySelector('div.PagePromo > div.PagePromo-content > div.PagePromo-title > a.Link > span.PagePromoContentIcons-text').innerText);
+        // Get Image
+        const moreNewsTopImage = await moreNewsTop.evaluate((el) => el.querySelector('div.PagePromo > div.PagePromo-media > a.Link > picture > img.Image').src);
+        // Get Link
+        const moreNewsTopLink = await moreNewsTop.evaluate((el) => el.querySelector('div.PagePromo > div.PagePromo-media > a.Link').href);
+
+        // Push Collated Data &  to "data" Array
+        const moreNewsTopObj = {
+            headline: moreNewsTopHead,
+            image: moreNewsTopImage,
+            link: moreNewsTopLink,
+        };
+        data.push(moreNewsTopObj);
+
+        //#endregion
+
+
+
+        //#region           MORE NEWS LIST DIVISION
+        await page.waitForSelector('html > body > div > main > div > div > div.TwoColumnContainer7030-column > div > div > ol > li', {visible: true});
+        const moreNewsStories = await page.$$('html > body > div > main > div > div > div.TwoColumnContainer7030-column > div > div > ol > li');
+
+        
+        for (let story of moreNewsStories) {
+            // Get Headline
+            const moreNewsHead = await story.evaluate(el => el.querySelector('a').innerText);
+            // Get Link
+            const moreNewsLink = await moreNewsTop.evaluate((el) => el.querySelector('a').href);
+
+            // Collate moreNewsData & Push to "data" Array
+            const moreNewsObj = {
+                headline: moreNewsHead,
+                link: moreNewsLink,
+            };
+
+            data.push(moreNewsObj);
+        };
+
+        //#endregion
+
+
         return NextResponse.json({ data });
+        
     }
     catch (err) {
+        data.push({
+            headline: "No more items currently unavailable."
+        });
         return NextResponse.json(
-            { err: `Associated Press failed to load : ${err.message}` },
-            { status: 400 }
+            {data},
+            { status: 200 }
         );
     }
     finally {

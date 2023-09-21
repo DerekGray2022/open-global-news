@@ -83,10 +83,13 @@ export async function  GET () {
         return NextResponse.json({ data });
     }
     catch (err) {
-        return NextResponse.json(
-            { error: `Press Agency failed to load : ${err.message}` },
-            { status: 400 }
-        );
+        data.push({
+            headline: "No more items currently unavailable."
+            });
+            return NextResponse.json(
+                {data},
+                { status: 200 }
+            );
     }
     finally {
         if (browser) {
