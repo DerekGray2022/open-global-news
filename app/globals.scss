@@ -145,11 +145,11 @@ button
 .backButton
 {
   position: sticky;
-  top: 6.1rem;
+  top: 6.5rem;
   display: flex;
   justify-content: center;
   margin-bottom: 3rem;
-  z-index: 99;
+  z-index: 1;
 
   button
   {

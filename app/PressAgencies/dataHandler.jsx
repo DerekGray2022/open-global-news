@@ -1,17 +1,24 @@
 "use client"
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import { Orbitron } from 'next/font/google';
 
+//     Fixing Vercel Caching Bug
+export const fetchCache = 'force-no-store';
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+//      FONTS
 const orbitron = Orbitron({
     subsets: ['latin'],
     weight: ['400', '700', '900']
 });
 
 //      COMPONENTS
+//  Images
 const images = require.context('../logos', true);
 const imageList = images.keys().map(image => images(image));
+//  JSON
 import Countries from '../json/countries.json';
 import Titles from '../json/titles.json';
 
@@ -53,6 +60,7 @@ export default function DataHandler() {
             {/* /////////////////////////////////////////// */}
             {/*         Opening Text            */}
             {/* /////////////////////////////////////////// */}
+            {selectDiv &&
             <div className="introContainer">
                 <p><b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.</p>
 
@@ -60,6 +68,8 @@ export default function DataHandler() {
 
                 <p className="lastPara">Click on a news agency logo below to download the latest headlines.</p>
             </div>
+            }
+            
             
             {/* /////////////////////////////////////////// */}
             {/*   Logo Selection Button  */}
