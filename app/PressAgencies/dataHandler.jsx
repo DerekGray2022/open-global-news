@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import Link from "next/link";
 import { Orbitron } from 'next/font/google';
 
@@ -18,6 +18,8 @@ const orbitron = Orbitron({
 //  Images
 const images = require.context('../logos', true);
 const imageList = images.keys().map(image => images(image));
+import ScrollToTop from "./scrollToTop";
+
 //  JSON
 import Countries from '../json/countries.json';
 import Titles from '../json/titles.json';
@@ -77,37 +79,37 @@ export default function DataHandler() {
             {selectDiv &&
                 <div className="container">
                 
-                {/*     List of Agency Logos    */}
-                {imageList.map((image, id) => {
-                    const srcArray = image.default.src.split("/");
-                    const wanted = srcArray[4];
-                    const wantedArray = wanted.split(".");
-                    const logoEndpoint = wantedArray[0];
-                    
-                    return (
-                        <button
+                    {/*     List of Agency Logos    */}
+                    {imageList.map((image, id) => {
+                        const srcArray = image.default.src.split("/");
+                        const wanted = srcArray[4];
+                        const wantedArray = wanted.split(".");
+                        const logoEndpoint = wantedArray[0];
+                        
+                        return (
+                            <button
                                 key={id}
-                            className="px-2 py-1 rounded-md"
-                            onClick={() => {
-                                setPresentImg(image.default.src);
-                                handleClick(logoEndpoint);
-                            }}
-                        >
-                        <div className="group relative flex justify-center">
-                            <img
-                                onMouseEnter = {(e) => {
-                                    setAltText(e.target.alt);
+                                className="px-2 py-1 rounded-md"
+                                onClick={() => {
+                                    setPresentImg(image.default.src);
+                                    handleClick(logoEndpoint);
                                 }}
-                                src={image.default.src}
-                                alt={logoEndpoint}
+                            >
+                            <div className="group relative flex justify-center">
+                                {/*     IMAGE    */}
+                                <img
+                                    onMouseEnter = {(e) => { setAltText(e.target.alt)}}
+                                    src={image.default.src}
+                                    alt={logoEndpoint}
                                 />
+                                {/*    TOOLTIP      */}
                                 <span className="scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100 toolTip">
                                     {Countries[altText]}
                                 </span>
-                        </div>
-                        </button>
-                    )
-                })}
+                            </div>
+                            </button>
+                        )
+                    })}
                 </div>
             }
 
@@ -116,11 +118,14 @@ export default function DataHandler() {
             {/*     BACK Button    */}
             {/* /////////////////////////////////////////// */}
             {!selectDiv && 
+                <Fragment>
+                <ScrollToTop />
                 <div className="backButton">
                     <button onClick={() => { setSelectDiv(true) }}>
                         BACK
                     </button> 
                 </div> 
+                </Fragment>
             }
 
 
