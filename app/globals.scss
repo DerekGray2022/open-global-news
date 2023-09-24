@@ -58,6 +58,7 @@ body
   justify-content: center;
   align-items: center;
   width: 80vw;
+  margin: 1rem auto;
 
   button
   {
@@ -74,6 +75,7 @@ body
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  width: 100%;
   padding: 1rem;
   background-color: rgba(var(--header-back));
   box-shadow: 5px 5px 10px rgba(var(--black-tint));
@@ -147,14 +149,14 @@ body
 }
 
 /*    BACK BUTTON   */
-.backButton
+#backButton
 {
   position: sticky;
   top: 6.5rem;
   display: flex;
   justify-content: center;
   margin: 3rem auto;
-  z-index: 1;
+  z-index: 99;
 
   button
   {
@@ -162,6 +164,7 @@ body
     font-size: 1.5rem;
     font-weight: 700;
     background-color: rgb(var(--background-rgb));
+    box-shadow: 0px 5px 10px rgb(var(--dark-teal)), 0px -5px 10px rgb(var(--dark-teal));
   }
 }
 
@@ -198,6 +201,7 @@ body
   h2
   {
     margin-top: 1rem;
+    text-align: center;
     color: rgb(var(--white));
     font-size: 1.2rem;
     font-weight: 700;
@@ -306,7 +310,7 @@ body
     border-top: 4px solid rgb(var(--foreground-rgb));
     border-radius: 50%;
     margin: auto 1rem;
-    animation: spin 1.5s linear infinite;
+    animation: spin 1.5s ease-in-out infinite;
   }
 }
 
@@ -327,7 +331,7 @@ body
 {
   .backButton
   {
-    top: 1rem;
+    top: 0;
   }
 }
 
