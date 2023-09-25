@@ -20,7 +20,8 @@ import ScrollToTop from "./scrollToTop";
 import Countries from './json/countries.json';
 import Titles from './json/titles.json';
 
-//     Fixing Vercel Caching Bug
+//     Fixing Vercel Caching Bug?
+//     vercel.json has been added.
 export const fetchCache = 'force-no-store';
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -49,9 +50,10 @@ export default function Home() {
       },
       cache: 'no-store',
     });
-    //      TODO    res.status = 500 bug fix
+
     const data = await res.json();
     const newsData = data.data;
+    console.log(newsData);
 
     setNews(newsData);
     setIsLoading(false);
@@ -83,11 +85,11 @@ export default function Home() {
       }
       
       
-      {/* ////////////////////////////////////// */}
-      {/*   Logo Selection Button  */}
-      {/* ////////////////////////////////////// */}
+      {/* ///////////////////////////////////////////// */}
+      {/*   Logo Selection Button List  */}
+      {/* ///////////////////////////////////////////// */}
       {selectDiv &&
-        <div className="container">
+        <div className="container grid grid-cols-2">
         
           {/*     List of Agency Logos    */}
           {imageList.map((image, id) => {
@@ -97,9 +99,10 @@ export default function Home() {
             const logoEndpoint = wantedArray[0];
             
             return (
+              //    LOGO BUTTON
               <button
                 key={id}
-                className="px-2 py-1 rounded-md"
+                className="px-2 py-1 rounded-md col-span-1"
                 onClick={() => {
                   setPresentImg(image.default.src);
                   handleClick(logoEndpoint);

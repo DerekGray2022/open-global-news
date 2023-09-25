@@ -41,11 +41,11 @@ export async function  GET () {
                 link: multiLink,
             };
             
+            
             data.push(multiObj);
         };
-        
         //#endregion
-
+        
         return NextResponse.json({ data });
     }
     catch (err) {
@@ -63,6 +63,5 @@ export async function  GET () {
         }
     };
 };
-
 
 
