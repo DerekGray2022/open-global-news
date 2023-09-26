@@ -3,6 +3,7 @@ import { Rajdhani } from 'next/font/google';
 
 //  Components
 import Header from './components/header';
+import Footer from './components/footer';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={rajdhani.className} >
         {<Header />}
         {children}
+        {<Footer />}
       </body>
     </html>
   );

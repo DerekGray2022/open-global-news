@@ -30,7 +30,7 @@ export async function GET () {
 
 
         // // // //     OUTPUT      // // // // // // //
-        return NextResponse.json({data} );
+        return NextResponse.json({data});
     }
     catch (err) {
         data.push({

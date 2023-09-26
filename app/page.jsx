@@ -69,12 +69,12 @@ export default function Home() {
         <ScrollToTop />
         <div className="introContainer">
           <p>
-                <b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.
+                <b>Open Global News</b> is committed to upholding the fundamental values of open, journalism, championing truth, diversity, and transparency in an ever-changing world of information.
           </p>
           
 
           <p>
-                A free, uncensored global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
+                A free, global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
           </p>
 
           <p className="lastPara">
@@ -89,7 +89,7 @@ export default function Home() {
       {/*   Logo Selection Button List  */}
       {/* ///////////////////////////////////////////// */}
       {selectDiv &&
-        <div className="container grid grid-cols-2">
+        <div className="container flex-wrap">
         
           {/*     List of Agency Logos    */}
           {imageList.map((image, id) => {
@@ -100,7 +100,7 @@ export default function Home() {
             
             return (
               //    LOGO BUTTON
-              <div key={id} className="col-span-1">
+              <div key={id} className="button">
                 <button
                     className="px-2 py-1 rounded-md"
                     onClick={() => {
@@ -108,7 +108,7 @@ export default function Home() {
                     handleClick(logoEndpoint);
                     }}
                 >
-                    <div className="group relative flex justify-center">
+                    <div className="group relative flex">
                     {/*     IMAGE    */}
                     <img
                         onMouseEnter = {(e) => { setAltText(e.target.alt)}}
