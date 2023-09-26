@@ -53,7 +53,6 @@ export default function Home() {
 
     const data = await res.json();
     const newsData = data.data;
-    console.log(newsData);
 
     setNews(newsData);
     setIsLoading(false);
@@ -70,15 +69,16 @@ export default function Home() {
         <ScrollToTop />
         <div className="introContainer">
           <p>
-            <b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.
+                <b>Open Global News</b> is committed to upholding the fundamental values of open, uncensored journalism, championing truth, diversity, and transparency in an ever-changing world of information.
           </p>
+          
 
           <p>
-            A free, uncensored global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
+                A free, uncensored global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
           </p>
 
           <p className="lastPara">
-            Click on a news agency logo below to download the latest headlines.
+                Click on a news agency logo below to download the latest headlines.
           </p>
         </div>
       </div>
@@ -100,27 +100,28 @@ export default function Home() {
             
             return (
               //    LOGO BUTTON
-              <button
-                key={id}
-                className="px-2 py-1 rounded-md col-span-1"
-                onClick={() => {
-                  setPresentImg(image.default.src);
-                  handleClick(logoEndpoint);
-                }}
-              >
-                <div className="group relative flex justify-center">
-                  {/*     IMAGE    */}
-                  <img
-                    onMouseEnter = {(e) => { setAltText(e.target.alt)}}
-                    src={image.default.src}
-                    alt={logoEndpoint}
-                  />
-                  {/*    TOOLTIP      */}
-                  <span className="scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100 toolTip">
-                    {Countries[altText]}
-                  </span>
-                </div>
-              </button>
+              <div key={id} className="col-span-1">
+                <button
+                    className="px-2 py-1 rounded-md"
+                    onClick={() => {
+                    setPresentImg(image.default.src);
+                    handleClick(logoEndpoint);
+                    }}
+                >
+                    <div className="group relative flex justify-center">
+                    {/*     IMAGE    */}
+                    <img
+                        onMouseEnter = {(e) => { setAltText(e.target.alt)}}
+                        src={image.default.src}
+                        alt={logoEndpoint}
+                    />
+                    {/*    TOOLTIP      */}
+                    <span className="scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100 toolTip">
+                        {Countries[altText]}
+                    </span>
+                    </div>
+                </button>
+            </div>
             )
           })}
         </div>

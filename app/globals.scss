@@ -310,7 +310,7 @@ body
     border-top: 4px solid rgb(var(--foreground-rgb));
     border-radius: 50%;
     margin: auto 1rem;
-    animation: spin 1.5s ease-in-out infinite;
+    animation: spin 1.25s linear  infinite;
   }
 }
 
