@@ -51,6 +51,7 @@ export default function Home() {
       cache: 'no-store',
     });
 
+    // res.setHeader('cache-control', 'no-store');
     const data = await res.json();
     const newsData = data.data;
 
@@ -85,11 +86,11 @@ export default function Home() {
       }
       
       
-      {/* ///////////////////////////////////////////// */}
+      {/* //////////////////////////////////////////// */}
       {/*   Logo Selection Button List  */}
-      {/* ///////////////////////////////////////////// */}
+      {/* //////////////////////////////////////////// */}
       {selectDiv &&
-        <div className="container flex-wrap">
+        <div className="logoContainer flex-wrap">
         
           {/*     List of Agency Logos    */}
           {imageList.map((image, id) => {
@@ -116,7 +117,7 @@ export default function Home() {
                         alt={logoEndpoint}
                     />
                     {/*    TOOLTIP      */}
-                    <span className="scale-0 rounded bg-gray-800 p-2 text-base font-bold text-white group-hover:scale-100 toolTip">
+                    <span className="scale-0 rounded bg-transparent p-2 text-xl font-bold text-red-300 group-hover:scale-100 toolTip">
                         {Countries[altText]}
                     </span>
                     </div>
@@ -141,13 +142,15 @@ export default function Home() {
       }
 
 
-      {/* ///////////////////////////////////// */}
-      {/*     Is Loading Spinner    */}
-      {/* ///////////////////////////////////// */}
+      {/* ////////////////////////////////// */}
+      {/*     Loading Spinner    */}
+      {/* ////////////////////////////////// */}
       { isLoading &&
         <div className="loading">
-          <div className="spinner"></div>
-          <p>Loading...</p>
+          <div className="flex">
+            <div className="spinner"></div>
+            <p>Collecting required data...</p>
+          </div>
         </div>
       }
 
@@ -156,7 +159,7 @@ export default function Home() {
       {/*     News Item Display Cards    */}
       {/* //////////////////////////////////////////////// */}
       {!selectDiv && 
-        <div>
+        <div className="cardContainer">
           {/*     Selected Agency's Logo    */}
           {!isLoading &&
             <div>
@@ -181,7 +184,7 @@ export default function Home() {
                 {item.link &&
                   <Link href={item.link} target="_blank" rel="noreferrer">
                   {/*   Image  */}
-                  {item.image && <img src={item.image} alt="Story Image" />}
+                  {item.image && <img src={item.image} alt="Item Image" />}
                   {/*   Headline  */}
                   <h3>{item.headline}</h3>
                   {/*   Body  */}

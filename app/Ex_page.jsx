@@ -26,24 +26,24 @@ export const fetchCache = 'force-no-store';
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-//    Create Seperate Divisions & Arrays
-const div01 = createElement('div', {className: "div01"});
-const div02 = createElement('div', {className: "div02"});
-const div03 = createElement('div', {className: "div03"});
-let div01Array = [];
-let div02Array = [];
-let div03Array = [];
+// //    Create Seperate Divisions & Arrays
+// const div01 = createElement('div', {className: "div01"});
+// const div02 = createElement('div', {className: "div02"});
+// const div03 = createElement('div', {className: "div03"});
+// let div01Array = [];
+// let div02Array = [];
+// let div03Array = [];
 
-//  Get Number of Buttons
-const listSize = imageList.length;
+// //  Get Number of Buttons
+// const listSize = imageList.length;
 
-//    Set-Up for 2-Column Layout
-const col02 = listSize / 2;
-const col02Int = col02.toFixed(0);
-//    Set-Up for 3-Column Layout
-const col03 = listSize / 3;
-const col03Int = col03.toFixed(0);
-const col03Mod = (col03 % 3).toFixed(0);
+// //    Set-Up for 2-Column Layout
+// const col02 = listSize / 2;
+// const col02Int = col02.toFixed(0);
+// //    Set-Up for 3-Column Layout
+// const col03 = listSize / 3;
+// const col03Int = col03.toFixed(0);
+// const col03Mod = (col03 % 3).toFixed(0);
 
 
 

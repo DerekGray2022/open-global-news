@@ -22,7 +22,7 @@ export async function GET () {
             {
                 headline: item.querySelector('.post-details > h2').innerText,
                 body: item.querySelector('.post-details > p').innerText,
-                link: item.querySelector('.post-details > h2 a').getAttribute('href'),
+                link: item.querySelector('.post-details > h2 > a').getAttribute('href'),
                 image: item.querySelector('a > img').dataset.src,
             }
         )));
