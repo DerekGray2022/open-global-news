@@ -180,23 +180,22 @@ export default function Home() {
           {/*    Card     */}
           {!isLoading && news.map((item, id) => (
               <div key={id} className="card itemCard">
-                {console.log(item.image)}
                 {/*     If LINK exists    */}
                 {item.link &&
                   <Link href={item.link} target="_blank" rel="noreferrer">
-                  {/*   Image  */}
-                  {item.image && <img src={item.image} alt="Item Image" />}
-                  {/*   Headline  */}
-                  <h3>{item.headline}</h3>
-                  {/*   Body  */}
-                  {item.body && <p>{item.body}</p>}
+                    {/*   Image  */}
+                    {item.image && <img src={item.image} alt="Item Image" />}
+                    {/*   Headline  */}
+                    <h3>{item.headline}</h3>
+                    {/*   Body  */}
+                    {item.body && <p>{item.body}</p>}
                   </Link>
                 }
                 {/*    If LINK doesn't exist   */}
                 {!item.link &&
                   <div>
                     {/*   Image  */}
-                    {item.image && <img src={item.image} alt="Story Image" />}
+                    {item.image && <img src={item.image} alt="Item Image" />}
                     {/*   Headline  */}
                     <h3>{item.headline}</h3>
                     {/*   Body  */}
