@@ -49,6 +49,8 @@ export default function Home() {
         revalidate: 0,
       },
       cache: 'no-store',
+      fetchCache: 'force-no-store',
+      dynamic: "force-dynamic",
     });
 
     // res.setHeader('cache-control', 'no-store');
@@ -192,7 +194,7 @@ export default function Home() {
                   </Link>
                 }
                 {/*    If LINK doesn't exist   */}
-                {!item.link &&
+                {!item.link || item.link === undefined &&
                   <div>
                     {/*   Image  */}
                     {item.image && <img src={item.image} alt="Item Image" />}
