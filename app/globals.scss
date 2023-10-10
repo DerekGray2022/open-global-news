@@ -229,7 +229,7 @@ body
     display: flex;
     justify-content: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 125px;
     margin-bottom: 1rem;
 
     button
@@ -287,8 +287,8 @@ body
 
     img
     {
-      width: 100%;
-      max-width: 350px;
+      width: auto;
+      max-width: 220px;
       margin: 1rem auto;
       border-radius: 5%;
     }
@@ -296,7 +296,7 @@ body
     h3
     {
       width: 100%;
-      max-width: 350px;
+      max-width: 400px;
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
       font-weight: 600;
@@ -305,7 +305,7 @@ body
     p
     {
       width: 100%;
-      max-width: 350px;
+      max-width: 400px;
       color: rgb(var(--white));
       font-size: 1rem;
       font-weight: 400;
@@ -321,7 +321,7 @@ body
     ul
     {
       width: 100%;
-      max-width: 350px;
+      max-width: 400px;
       color: rgb(167, 167, 0);
 
       li
@@ -345,6 +345,11 @@ body
   display: flex;
   font-size: 1.5rem;
   font-weight: 700;
+
+  p
+  {
+    font-size: 0.75rem;
+  }
 
   .spinner
   {
@@ -372,11 +377,62 @@ body
 
 
 //    MEDIA QUERIES
+@media only screen and (min-width : 350px) 
+{
+  .cardContainer
+  {
+    .card
+    {
+      img
+      {
+        max-width: 300px;
+      }
+    }
+  }
+  .logoButtonWrap
+  {
+    .logoButton
+    {
+      max-width: 300px;
+    }
+  }
+  
+  .loading
+  {
+    p
+    {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media only screen and (min-width : 500px) 
+{
+  .cardContainer
+  {
+    .card
+    {
+      img
+      {
+        max-width: 400px;
+      }
+    }
+  }
+  
+  .loading
+  {
+    p
+    {
+      font-size: 1.2rem;
+    }
+  }
+}
+
 @media only screen and (min-width : 700px) 
 {
-  .backButton
+  #backButton
   {
-    top: 0;
+    top: 1rem;
   }
 }
 
