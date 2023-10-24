@@ -3,7 +3,6 @@ import { NextResponse } from"next/server";
 import puppeteer from 'puppeteer';
 
 let data = [];
-let related = [];
 
 export async function  GET () {
     const browser = await puppeteer.launch({
@@ -30,7 +29,10 @@ export async function  GET () {
             // Get Body
             const latestNewsBody = await item.evaluate(el => el.querySelector('div.col div.post-item div.post-item-desc.py-0 div.alt-font.text-secondary.my-2 p').innerText);
             // Get Image
-            const latestNewsImage = await item.evaluate(el => el.querySelector('a > div > img.img-cover').src);
+            let latestNewsImage = await item.evaluate(el => el.querySelector('a > div > img.img-cover').src);
+            if (latestNewsImage === "https://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/loading_v2.gif") {
+                latestNewsImage = await item.evaluate(el => el.querySelector('a > div > img.img-cover').dataset.echo);
+            };
             // Get Link
             const latestNewsLink = await item.evaluate(el => el.querySelector('a').href);
 
@@ -63,7 +65,5 @@ export async function  GET () {
         }
     };
 };
-
-
 
 

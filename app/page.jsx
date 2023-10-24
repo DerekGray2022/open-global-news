@@ -72,16 +72,15 @@ export default function Home() {
         <ScrollToTop />
         <div className="introContainer">
           <p>
-                <b>Open Global News</b> is committed to upholding the fundamental values of open, journalism, championing truth, diversity, and transparency in an ever-changing world of information.
+            <b>Open Global News</b> is committed to upholding the fundamental values of open, journalism, championing truth, diversity, and transparency in an ever-changing world of information.
           </p>
           
-
           <p>
-                A free, global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
+            A free, global press serves as the cornerstone of democracy, empowering citizens with diverse, unfiltered information to make informed decisions and hold institutions accountable for a just and transparent society.
           </p>
 
           <p className="lastPara">
-                Click on a news agency logo below to download the latest headlines.
+            Click on a news agency logo below to download the latest headlines.
           </p>
         </div>
       </div>
@@ -162,6 +161,7 @@ export default function Home() {
       {/* //////////////////////////////////////////////// */}
       {!selectDiv && 
         <div className="cardContainer">
+          
           {/*     Selected Agency's Logo    */}
           {!isLoading &&
             <div>
@@ -194,7 +194,7 @@ export default function Home() {
                   </Link>
                 }
                 {/*    If LINK doesn't exist   */}
-                {!item.link || item.link === undefined &&
+                {!item.link &&
                   <div>
                     {/*   Image  */}
                     {item.image && <img src={item.image} alt="Item Image" />}
@@ -204,6 +204,7 @@ export default function Home() {
                     {item.body && <p>{item.body}</p>}
                   </div>
                 }
+              
                 {/*     Related Items    */}
                 {item.related && 
                   <div>

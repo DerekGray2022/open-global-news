@@ -1,9 +1,8 @@
-// // // //      PRESS AGENCY (Country)        ////
+// // // //      AFRICAN NEWS AGENCY (South Africa)        ////
 import { NextResponse } from"next/server";
 import puppeteer from 'puppeteer';
 
 let data = [];
-let related = [];
 
 export async function  GET () {
     const browser = await puppeteer.launch({
