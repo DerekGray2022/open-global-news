@@ -104,26 +104,26 @@ export default function Home() {
               //    LOGO BUTTON
               <div key={id} className="button">
                 <button
-                    className="px-2 py-1 rounded-md"
-                    onClick={() => {
-                    setPresentImg(image.default.src);
-                    handleClick(logoEndpoint);
-                    }}
+                className="px-2 py-1 rounded-md"
+                onClick={() => {
+                setPresentImg(image.default.src);
+                handleClick(logoEndpoint);
+                }}
                 >
-                    <div className="group relative flex">
+                  <div className="group relative flex">
                     {/*     IMAGE    */}
                     <img
-                        onMouseEnter = {(e) => { setAltText(e.target.alt)}}
-                        src={image.default.src}
-                        alt={logoEndpoint}
+                      onMouseEnter = {(e) => { setAltText(e.target.alt)}}
+                      src={image.default.src}
+                      alt={logoEndpoint}
                     />
                     {/*    TOOLTIP      */}
                     <span className="scale-0 rounded bg-transparent p-2 text-xl font-bold text-red-300 group-hover:scale-100 toolTip">
-                        {Countries[altText]}
+                      {Countries[altText]}
                     </span>
-                    </div>
+                  </div>
                 </button>
-            </div>
+              </div>
             )
           })}
         </div>
@@ -182,7 +182,8 @@ export default function Home() {
           {/*    Card     */}
           {!isLoading && news.map((item, id) => (
               <div key={id} className="card itemCard">
-                {/*     If LINK exists    */}
+              {console.log(item)}
+              {/*     If LINK exists    */}
                 {item.link &&
                   <Link href={item.link} target="_blank" rel="noreferrer">
                     {/*   Image  */}
