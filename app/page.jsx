@@ -37,7 +37,7 @@ export default function Home() {
   const [presentImg, setPresentImg] = useState(null);
 
   //  Functions
-  const handleClick = async (endpoint, e) => {
+  const handleClick = async (endpoint) => {
     setNews([]);
     setSelectDiv(false);
     setIsLoading(true);
