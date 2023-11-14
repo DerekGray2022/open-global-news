@@ -23,5 +23,6 @@
     "Reuters": ["Reuters", "UK"],
     "TASS": ["Russian News Agency", "Russia"],
     "UNA": ["Union of OIC News Agencies", "Saudi Arabia"],
+    "SKorea": ["Yonhap News Agency", "South Korea"],
     "Xinhua": ["Xinhua News Agency", "China"]
 }
