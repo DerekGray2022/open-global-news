@@ -55,7 +55,6 @@ export async function  GET () {
             };
             data.push(listObj);
         };
-            console.log({data});
         
         //#endregion
 

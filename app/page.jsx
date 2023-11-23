@@ -182,7 +182,6 @@ export default function Home() {
           {/*    Card     */}
           {!isLoading && news.map((item, id) => (
               <div key={id} className="card itemCard">
-              {console.log(item)}
               {/*     If LINK exists    */}
                 {item.link &&
                   <Link href={item.link} target="_blank" rel="noreferrer">
