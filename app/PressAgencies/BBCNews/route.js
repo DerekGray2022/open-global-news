@@ -21,17 +21,17 @@ export async function  GET () {
 
 
         // #region           TOP ITEM DIVISION
-        await page.waitForSelector('html > body > div#orb-modules > div > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div:nth-of-type(1) > div.gel-layout > div:nth-of-type(1) > div > div', {visible: true});
-        const topItem = await page.$('html > body > div#orb-modules > div > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div:nth-of-type(1) > div > div');
+        await page.waitForSelector('html > body > div#orb-modules > div.news-chameleon-serif-enabled > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div:nth-of-type(1) > div.gel-layout > div.nw-c-top-stories__primary-item > div.nw-c-top-stories-primary__story > div.gs-c-promo', {visible: true});
+        const topItem = await page.$('html > body > div#orb-modules > div.news-chameleon-serif-enabled > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div:nth-of-type(1) > div.gel-layout > div.nw-c-top-stories__primary-item > div.nw-c-top-stories-primary__story > div.gs-c-promo');
 
         // Get Headline
-        const topItemHead = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(1) > div > a > h3').innerText);
+        const topItemHead = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(2) > div > a > h3').innerText);
         // Get Body
-        const topItemBody = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(1) > div > p').innerText);
+        const topItemBody = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(2) > div > p').innerText);
         // Get Image
-        const topItemImage = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(2) > div > div > img').src);
+        const topItemImage = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(1) > div > div > img').src);
         // Get Link
-        const topItemLink = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(1) > div > a').href);
+        const topItemLink = await topItem.evaluate((el) => el.querySelector('div:nth-of-type(2) > div > a').href);
 
         // Push Collated Data &  to "data" Array
         const topItemObj = {
@@ -47,26 +47,36 @@ export async function  GET () {
 
 
 
-        //#region           MULTIPLE ITEMS DIVISION
+        //#region           LIST ITEMS DIVISION
         await page.waitForSelector('html > body > div#orb-modules > div > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div.gel-layout__item > div.gel-layout > div:nth-child(n+2)', {visible: true});
-        const multiItems = await page.$$('html > body > div#orb-modules > div > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div.gel-layout__item > div.gel-layout > div:nth-child(n+2)');
+        const listItems = await page.$$('html > body > div#orb-modules > div > div#site-container > div#latest-stories-tab-container > div#news-top-stories-container > div:nth-of-type(3) > div#nw-c-topstories-domestic > div.gel-wrap > div.gel-layout > div.gel-layout__item > div.gel-layout > div:nth-child(n+2)');
 
-        for (let item of multiItems) {
-            // Get Headline
-            const multiHead = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-body > div > a > h3.gs-c-promo-heading__title').innerText);
-            // Get Image
-            const multiImage = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-image > div > div > img').src);
-            // Get Link
-            const multiLink = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-body > div > a').href);
+        for (let item of listItems) {
+            try {
+                // Get Headline
+                const listHead = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-body > div > a > h3.gs-c-promo-heading__title').innerText);
+                // Get Image
+                let listImage = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-image > div > div > img').src);
 
-            // Collate multiData & Push to "data" Array
-            const multiObj = {
-                headline: multiHead,
-                image: multiImage,
-                link: multiLink,
+                if (listImage === 'data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7') {
+                    let image = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-image > div > div > img').dataset.src);
+                    listImage = image.replace("{width}", "240");
+                };
+                // Get Link
+                const listLink = await item.evaluate(el => el.querySelector('div > div.gs-c-promo-body > div > a').href);
+
+                // Collate listData & Push to "data" Array
+                const listObj = {
+                    headline: listHead,
+                    image: listImage,
+                    link: listLink,
+                };
+
+                data.push(listObj);
+            }
+            catch (error) {
+                
             };
-
-            data.push(multiObj);
         };
         
         //#endregion
@@ -88,5 +98,4 @@ export async function  GET () {
         };
     };
 };
-
 

@@ -1,138 +1,37 @@
 {
-    "Afghanistan": [
-        "Bakhtar News Agency",
-        "Afghanistan"
-    ],
-    "Albania": [
-        "Albanian Telegraphic Agency",
-        "Albania"
-    ],
-    "Algeria": [
-        "Algeria Press Service",
-        "Algeria"
-    ],
-    "Argentina": [
-        "Têlam",
-        "Argentina"
-    ],
-    "Armenia": [
-        "PanARMENIAN.Net",
-        "Armenia"
-    ],
-    "Australia": [
-        "The Australian",
-        "Australia"
-    ],
-    "Azerbaijan": [
-        "Azerbaijan State News Agency",
-        "Azerbaijan"
-    ],
-    "Bangladesh": [
-        "Bangladesh Sangbad Sangstha",
-        "Bangladesh"
-    ],
-    "BBCNews": [
-        "BBC News",
-        "UK"
-    ],
-    "Belarus": [
-        "Belarusian Telegraph Agency",
-        "Belarus"
-    ],
-    "Belgium": [
-        "Belga",
-        "Belgium"
-    ],
-    "Brazil": [
-        "Agência Brasil",
-        "Brazil"
-    ],
-    "Canada": [
-        "Canadian Press",
-        "Canada"
-    ],
-    "China": [
-        "Xinhua News Agency",
-        "China"
-    ],
-    "Egypt": [
-        "Daily News Egypt",
-        "Egypt"
-    ],
-    "France": [
-        "France24",
-        "France"
-    ],
-    "Germany": [
-        "Correctiv",
-        "Germany"
-    ],
-    "Greece": [
-        "Athens & Macedonian News Agency",
-        "Greece"
-    ],
-    "India": [
-        "Press Trust of India",
-        "India"
-    ],
-    "Iran": [
-        "Fars News Agency",
-        "Iran"
-    ],
-    "Israel": [
-        "Haaretz",
-        "Israel"
-    ],
-    "Japan": [
-        "Kyodo News",
-        "Japan"
-    ],
-    "Kashmir": [
-        "Kashmir News Service",
-        "Kashmir"
-    ],
-    "NKorea": [
-        "Korean Central News Agency",
-        "North Korea"
-    ],
-    "Pakistan": [
-        "Associated Press of Pakistan",
-        "Pakistan"
-    ],
-    "Palestine": [
-        "Palestinian Information Center",
-        "Palestine"
-    ],
-    "Reuters": [
-        "Reuters",
-        "UK"
-    ],
-    "Russia": [
-        "Russian News Agency",
-        "Russia"
-    ],
-    "SAfrica": [
-        "African News Agency",
-        "South Africa"
-    ],
-    "SArabia": [
-        "Union of OIC News Agencies",
-        "Saudi Arabia"
-    ],
-    "SKorea": [
-        "Yonhap News Agency",
-        "South Korea"
-    ],
-    "Ukraine": [
-        "Ukrainian News Agency",
-        "Ukraine"
-    ],
-    "Usa":[ 
-        "Associated Press", 
-        "USA"
-    ],
-    "Yemen": [
-        "Saba News Agency", 
-        "Yemen"
-    ]
+    "Afghanistan": ["Bakhtar News Agency", "Afghanistan"],
+    "Albania": ["Albanian Telegraphic Agency", "Albania"],
+    "Algeria": ["Algeria Press Service", "Algeria"],
+    "Argentina": ["Têlam", "Argentina"],
+    "Armenia": ["PanARMENIAN.Net", "Armenia"],
+    "Australia": ["The Australian", "Australia"],
+    "Azerbaijan": ["Azerbaijan State News Agency", "Azerbaijan"],
+    "Bangladesh": ["Bangladesh Sangbad Sangstha", "Bangladesh"],
+    "BBCNews": ["BBC News", "UK"],
+    "Belarus": ["Belarusian Telegraph Agency", "Belarus"],
+    "Belgium": ["Belga", "Belgium"],
+    "Brazil": ["Agência Brasil", "Brazil"],
+    "Canada": ["Canadian Press", "Canada"],
+    "China": ["Xinhua News Agency", "China"],
+    "Egypt": ["Daily News Egypt", "Egypt"],
+    "France": ["France24", "France"],
+    "Germany": ["Correctiv", "Germany"],
+    "Greece": ["Athens & Macedonian News Agency", "Greece"],
+    "India": ["Press Trust of India", "India"],
+    "Iran": ["Fars News Agency", "Iran"],
+    "Israel": ["Haaretz", "Israel"],
+    "Japan": ["Kyodo News", "Japan"],
+    "Kashmir": ["Kashmir News Service", "Kashmir"],
+    "NKorea": ["Korean Central News Agency", "North Korea"],
+    "Pakistan": ["Associated Press of Pakistan", "Pakistan"],
+    "Palestine": ["Palestinian Information Center", "Palestine"],
+    "Reuters": ["Reuters", "UK"],
+    "Russia": ["Russian News Agency", "Russia"],
+    "SAfrica": ["African News Agency", "South Africa"],
+    "SArabia": ["Union of OIC News Agencies", "Saudi Arabia"],
+    "SKorea": ["Yonhap News Agency", "South Korea"],
+    "Sudan": ["Sudan News Agency", "Sudan"],
+    "Ukraine": ["Ukrainian News Agency", "Ukraine"],
+    "Usa":[ "Associated Press",  "USA"],
+    "Yemen": ["Saba News Agency",  "Yemen"]
 }
